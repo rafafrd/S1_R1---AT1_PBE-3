@@ -1,8 +1,30 @@
 import produtoModel from "../model/produtoModel.js";
-import express from "express";
 import uploadImage from "../middleware/uploadimage.middleware.js";
 
 const produtoController = {
+  async getAllProdutos(req, res) {
+    try {
+      const produtos = await produtoModel.getAllProdutos();
+      res.json(produtos);
+    } catch (error) {
+      console.error(`Erro ao buscar produtos: ${error}`);
+      res.status(500).json({ error: "Erro ao buscar produtos" });
+    }
+  },
+  async getProdutoById(req, res) {
+    try {
+      const { idProduto } = req.params;
+      const produto = await produtoModel.getProdutoById(idProduto);
+      if (produto) {
+        res.json(produto);
+      } else {
+        res.status(404).json({ error: "Produto não encontrado" });
+      }
+    } catch (error) {
+      console.error(`Erro ao buscar produto por ID: ${error}`);
+      res.status(500).json({ error: "Erro ao buscar produto por ID" });
+    }
+  },
   /**
    *
    * @param {*} req
@@ -24,10 +46,12 @@ const produtoController = {
           return res.status(400).json({ error: err.message });
         }
         const { idCategoria, nomeProduto, valorProduto } = req.body; // id produto será a hash gerada por cripto no multer
+        const { vinculoImagem } = req.file.filename;
         const produto = {
           idCategoria,
           nomeProduto,
           valorProduto,
+          vinculoImagem,
         };
         await produtoModel.createProduto(produto);
         res.status(201).json({ message: "Produto criado com sucesso" });
@@ -39,4 +63,4 @@ const produtoController = {
   },
 };
 
-export default { produtoController };
+export default produtoController;

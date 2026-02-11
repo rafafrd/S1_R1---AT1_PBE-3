@@ -7,20 +7,15 @@ const ProdutoModel = {
    */
   async createProduto(produto) {
     const connection = await pool.getConnection();
-    try {
-      const { idProduto, idCategoria, nomeProduto, valorProduto } = produto;
-      const query =
-        "INSERT INTO Produtos (idProduto, idCategoria, nomeProduto, valorProduto) VALUES (?, ?, ?, ?)";
-      await connection.execute(query, [
-        idProduto,
-        idCategoria,
-        nomeProduto,
-        valorProduto,
-      ]);
-    } catch (error) {
-      console.error(`Erro ao criar produto: ${error}`);
-      throw error;
-    }
+    const { idCategoria, nomeProduto, valorProduto, vinculoImagem } = produto;
+    const query =
+      "INSERT INTO Produtos (idCategoria, nomeProduto, valorProduto, vinculoImagem) VALUES (?, ?, ?, ?)";
+    await connection.execute(query, [
+      idCategoria,
+      nomeProduto,
+      valorProduto,
+      vinculoImagem,
+    ]);
   },
   /**
    * Roda a query para buscar todos os produtos no banco de dados
@@ -32,14 +27,9 @@ const ProdutoModel = {
    */
   async getAllProdutos() {
     const connection = await pool.getConnection();
-    try {
-      const query = "SELECT * FROM Produtos";
-      const [rows] = await connection.execute(query);
-      return rows;
-    } catch (error) {
-      console.error(`Erro ao buscar produtos: ${error}`);
-      throw error;
-    }
+    const query = "SELECT * FROM Produtos";
+    const [rows] = await connection.execute(query);
+    return rows;
   },
   /**
    * Roda a query para buscar um produto pelo ID no banco de dados
@@ -52,15 +42,10 @@ const ProdutoModel = {
    */
   async getProdutoById(idProduto) {
     const connection = await pool.getConnection();
-    try {
-      const query = "SELECT * FROM Produtos WHERE idProduto = ?";
-      const [rows] = await connection.execute(query, [idProduto]);
-      return rows[0];
-    } catch (error) {
-      console.error(`Erro ao buscar produto por ID: ${error}`);
-      throw error;
-    }
+    const query = "SELECT * FROM Produtos WHERE idProduto = ?";
+    const [rows] = await connection.execute(query, [idProduto]);
+    return rows[0];
   },
 };
 
-export default { ProdutoModel };
+export default ProdutoModel;

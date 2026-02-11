@@ -1,7 +1,10 @@
 import produtoController from "../controllers/produto.controller.js";
+import { Router } from "express";
 
-const router = express.Router();
+const produtoRouter = Router();
 
-router.post("/produtos", produtoController.createProduto);
+produtoRouter.post("/produtos", produtoController.createProduto);
+produtoRouter.get("/produtos", produtoController.getAllProdutos);
+produtoRouter.get("/produtos/:idProduto", produtoController.getProdutoById);
 
-export { router };
+export { produtoRouter };
