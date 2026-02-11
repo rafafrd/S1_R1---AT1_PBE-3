@@ -2,6 +2,11 @@ import produtoModel from "../model/produtoModel.js";
 import uploadImage from "../middleware/uploadimage.middleware.js";
 
 const produtoController = {
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   */
   async getAllProdutos(req, res) {
     try {
       const produtos = await produtoModel.getAllProdutos();
@@ -59,6 +64,22 @@ const produtoController = {
     } catch (error) {
       console.error(`Erro ao criar produto: ${error}`);
       res.status(500).json({ error: "Erro ao criar produto" });
+    }
+  },
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   */
+  async deleteProduto(req, res) {
+    // TODO: Deletar a imagem do produto junto com o produto no banco de dados
+    try {
+      const { idProduto } = req.params;
+      await produtoModel.deleteProduto(parseInt(idProduto));
+      res.status(200).json({ message: "Produto deletado com sucesso" });
+    } catch (error) {
+      console.error(`Erro ao deletar produto: ${error}`);
+      res.status(500).json({ error: "Erro ao deletar produto" });
     }
   },
 };

@@ -1,6 +1,11 @@
 import CategoriaModel from "../model/categoriaModel.js";
 
 const categoriaController = {
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   */
   async createCategoria(req, res) {
     try {
       const { descricaoCategoria } = req.body;
@@ -12,6 +17,11 @@ const categoriaController = {
       res.status(500).json({ error: "Erro ao criar categoria" });
     }
   },
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   */
   async getAllCategorias(req, res) {
     try {
       const categorias = await CategoriaModel.getAllCategorias();
