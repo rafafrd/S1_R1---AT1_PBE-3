@@ -7,6 +7,8 @@ const ProdutoModel = {
    */
   async createProduto(produto) {
     const connection = await pool.getConnection();
+    console.log(produto);
+
     const { idCategoria, nomeProduto, valorProduto, vinculoImagem } = produto;
     const query =
       "INSERT INTO Produtos (idCategoria, nomeProduto, valorProduto, vinculoImagem) VALUES (?, ?, ?, ?)";

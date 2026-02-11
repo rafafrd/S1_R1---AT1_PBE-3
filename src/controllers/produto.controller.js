@@ -45,12 +45,12 @@ const produtoController = {
         if (err) {
           return res.status(400).json({ error: err.message });
         }
-        const { idCategoria, nomeProduto, valorProduto } = req.body; // id produto será a hash gerada por cripto no multer
-        const { vinculoImagem } = req.file.filename;
+        const { idCategoria, valorProduto, nomeProduto } = req.body;
+        const vinculoImagem = req.file.filename;
         const produto = {
-          idCategoria,
+          idCategoria: parseInt(idCategoria),
           nomeProduto,
-          valorProduto,
+          valorProduto: parseFloat(valorProduto),
           vinculoImagem,
         };
         await produtoModel.createProduto(produto);
