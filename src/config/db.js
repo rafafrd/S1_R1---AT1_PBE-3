@@ -1,6 +1,7 @@
-require("dotenv").config(); // Carrega as variáveis do arquivo .env
+import dotenv from "dotenv";
+dotenv.config(); // Carrega as variáveis do arquivo .env
 
-const mysql = require("mysql2/promise");
+import mysql from "mysql2/promise";
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST || "127.0.0.1",
@@ -23,4 +24,4 @@ const pool = mysql.createPool({
   }
 })();
 
-module.exports = { pool };
+export default pool;

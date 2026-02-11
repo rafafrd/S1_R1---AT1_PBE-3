@@ -6,4 +6,4 @@ const categoriaRouter = Router();
 categoriaRouter.post("/categorias", categoriaController.createCategoria);
 categoriaRouter.get("/categorias", categoriaController.getAllCategorias);
 
-export { categoriaRouter };
+export default categoriaRouter;

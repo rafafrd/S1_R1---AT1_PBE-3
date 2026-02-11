@@ -7,4 +7,4 @@ produtoRouter.post("/produtos", produtoController.createProduto);
 produtoRouter.get("/produtos", produtoController.getAllProdutos);
 produtoRouter.get("/produtos/:idProduto", produtoController.getProdutoById);
 
-export { produtoRouter };
+export default produtoRouter;

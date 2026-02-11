@@ -2,7 +2,7 @@
 
 CREATE TABLE IF NOT EXISTS Categoria (
     idCategoria INT PRIMARY KEY AUTO_INCREMENT,
-    descricaoCategoria VARCHAR(255) NOT NULL,
+    descricaoCategoria VARCHAR(255) UNIQUE NOT NULL,
     dataCad TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -16,5 +16,6 @@ CREATE TABLE IF NOT EXISTS Produtos (
     FOREIGN KEY (idCategoria) REFERENCES Categoria (idCategoria)
 );
 
--- DROP TABLE IF EXISTS Categoria;
--- DROP TABLE IF EXISTS Produtos;
+DROP TABLE IF EXISTS Categoria;
+
+DROP TABLE IF EXISTS Produtos;

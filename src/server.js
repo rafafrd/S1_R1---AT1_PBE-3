@@ -1,8 +1,9 @@
-const express = require("express");
+import express from "express";
 const app = express();
 const PORT = process.env.SERVER_PORT || 3000;
+import path from "path";
 
-const { router } = require("./routes/routes.js");
+import router from "./routes/routes.js";
 
 //middleware
 app.use(express.json());
