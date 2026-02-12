@@ -102,6 +102,40 @@ const ProdutoModel = {
     const query = "DELETE FROM Produtos WHERE idProduto = ?";
     await connection.execute(query, [idProduto]);
   },
+  /**
+   * Atualiza um produto existente no banco de dados.
+   * @async
+   * @param {Object} produto - Objeto com os dados do produto a atualizar.
+   * @param {number|string} produto.idProduto - ID do produto a ser atualizado.
+   * @param {number} produto.idCategoria - ID da categoria à qual o produto pertence.
+   * @param {string} produto.nomeProduto - Nome do produto.
+   * @param {number} produto.valorProduto - Valor do produto.
+   * @param {string} [produto.vinculoImagem] - Nome/caminho do arquivo de imagem armazenado.
+   * @returns {Promise<void>} - Resolve quando a operação de update for concluída.
+   * @example
+   * const atualizado = {
+   *   idProduto: 1,
+   *   idCategoria: 2,
+   *   nomeProduto: 'Mouse Gamer',
+   *   valorProduto: 149.9,
+   *   vinculoImagem: 'xyz123-mouse.png'
+   * };
+   * await ProdutoModel.updateProduto(atualizado);
+   */
+  async updateProduto(produto) {
+    const connection = await pool.getConnection();
+    const { idProduto, idCategoria, nomeProduto, valorProduto, vinculoImagem } = produto;
+    // Query SQL para atualizar todos os campos do produto
+    const query =
+      "UPDATE Produtos SET idCategoria = ?, nomeProduto = ?, valorProduto = ?, vinculoImagem = ? WHERE idProduto = ?";
+    await connection.execute(query, [
+      idCategoria,
+      nomeProduto,
+      valorProduto,
+      vinculoImagem,
+      idProduto,
+    ]);
+  },
 };
 
 export default ProdutoModel;
