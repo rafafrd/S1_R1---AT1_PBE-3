@@ -103,7 +103,10 @@ const produtoController = {
 
         // Validação adicional: verifica se os valores são válidos
         // idCategoria deve ser um número positivo
-        if (isNaN(parseInt(idCategoria)) || parseInt(idCategoria) <= 0) {
+        if (
+          Number.Number.isNaN(Number.parseInt(idCategoria)) ||
+          Number.parseInt(idCategoria) <= 0
+        ) {
           const imagePath = path.resolve("uploads/images", req.file.filename);
           if (fs.existsSync(imagePath)) {
             fs.unlinkSync(imagePath);
@@ -114,7 +117,10 @@ const produtoController = {
         }
 
         // valorProduto deve ser um número positivo
-        if (isNaN(parseFloat(valorProduto)) || parseFloat(valorProduto) <= 0) {
+        if (
+          Number.isNaN(Number.parseFloat(valorProduto)) ||
+          Number.parseFloat(valorProduto) <= 0
+        ) {
           path.resolve("/foo/bar", "./baz");
           // // Returns: '/foo/bar/baz'
 
@@ -138,9 +144,9 @@ const produtoController = {
 
         // Monta o objeto produto com os dados validados
         const produto = {
-          idCategoria: parseInt(idCategoria),
+          idCategoria: Number.parseInt(idCategoria),
           nomeProduto,
-          valorProduto: parseFloat(valorProduto),
+          valorProduto: Number.parseFloat(valorProduto),
           vinculoImagem,
         };
 
@@ -209,7 +215,9 @@ const produtoController = {
 
       // Primeiro, busca o produto no banco para obter o nome da imagem
       // Precisamos saber qual arquivo deletar antes de remover o produto
-      const produto = await produtoModel.getProdutoById(parseInt(idProduto));
+      const produto = await produtoModel.getProdutoById(
+        Number.parseInt(idProduto),
+      );
 
       // Verifica se o produto existe
       if (!produto) {
@@ -218,7 +226,7 @@ const produtoController = {
 
       // Deleta o produto do banco de dados primeiro
       // Se a deleção do banco falhar, a imagem não será removida
-      await produtoModel.deleteProduto(parseInt(idProduto));
+      await produtoModel.deleteProduto(Number.parseInt(idProduto));
 
       // Após deletar do banco com sucesso, remove a imagem do diretório
       // Verifica se o produto tinha uma imagem associada
@@ -282,7 +290,7 @@ const produtoController = {
         // Busca o produto existente no banco
         // Precisamos dos dados antigos para saber qual imagem deletar
         const produtoExistente = await produtoModel.getProdutoById(
-          parseInt(idProduto),
+          Number.parseInt(idProduto),
         );
 
         // Verifica se o produto existe
@@ -300,7 +308,8 @@ const produtoController = {
         // Validação dos campos (se fornecidos, devem ser válidos)
         if (
           idCategoria &&
-          (isNaN(parseInt(idCategoria)) || parseInt(idCategoria) <= 0)
+          (Number.isNaN(Number.parseInt(idCategoria)) ||
+            Number.parseInt(idCategoria) <= 0)
         ) {
           if (req.file) {
             const imagePath = path.resolve("uploads/images", req.file.filename);
@@ -315,7 +324,8 @@ const produtoController = {
 
         if (
           valorProduto &&
-          (isNaN(parseFloat(valorProduto)) || parseFloat(valorProduto) <= 0)
+          (Number.isNaN(Number.parseFloat(valorProduto)) ||
+            Number.parseFloat(valorProduto) <= 0)
         ) {
           if (req.file) {
             const imagePath = path.resolve("uploads/images", req.file.filename);
@@ -331,13 +341,13 @@ const produtoController = {
         // Monta o objeto com os dados a serem atualizados
         // Se um campo não foi enviado, mantém o valor antigo
         const produtoAtualizado = {
-          idProduto: parseInt(idProduto),
+          idProduto: Number.parseInt(idProduto),
           idCategoria: idCategoria
-            ? parseInt(idCategoria)
+            ? Number.parseInt(idCategoria)
             : produtoExistente.idCategoria,
           nomeProduto: nomeProduto || produtoExistente.nomeProduto,
           valorProduto: valorProduto
-            ? parseFloat(valorProduto)
+            ? Number.parseFloat(valorProduto)
             : produtoExistente.valorProduto,
           vinculoImagem: req.file
             ? req.file.filename
