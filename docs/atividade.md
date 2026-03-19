@@ -88,4 +88,4 @@ erDiagram
 
 ---
 
-###### made with ❤️ by rafão
+###### made with ❤️ by rafão👨‍💻

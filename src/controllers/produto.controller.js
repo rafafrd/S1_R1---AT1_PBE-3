@@ -1,7 +1,7 @@
 import produtoModel from "../model/produtoModel.js";
 import uploadImage from "../middleware/uploadimage.middleware.js";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 
 const produtoController = {
   /**

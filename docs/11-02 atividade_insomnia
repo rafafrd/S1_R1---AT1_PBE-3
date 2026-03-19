@@ -1,0 +1,235 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: 11-02 atividade
+meta:
+  id: wrk_984f8457b4364ab1a29c9bcf1c83c5fc
+  created: 1770812869047
+  modified: 1770812869047
+  description: ""
+collection:
+  - url: localhost:8000/produtos
+    name: SELECT PRODUTO
+    meta:
+      id: req_0ecf4862054044e38c6a291e876f104f
+      created: 1770812882426
+      modified: 1770814547837
+      isPrivate: false
+      description: ""
+      sortKey: -1770812882426
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.3.1
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8000/categorias
+    name: SELECT CATEGORIA
+    meta:
+      id: req_8872ff49a70844fdaa3bfc655e43eb07
+      created: 1770812891913
+      modified: 1770814427887
+      isPrivate: false
+      description: ""
+      sortKey: -1770812891913
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.3.1
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8000/produtos
+    name: INSERT PRODUTO
+    meta:
+      id: req_8a822d39a65a4e3da4217ca28ac5b10e
+      created: 1770812904874
+      modified: 1770816357283
+      isPrivate: false
+      description: ""
+      sortKey: -1770812904874
+    method: POST
+    body:
+      mimeType: multipart/form-data
+      params:
+        - name: idCategoria
+          value: "1"
+        - name: nomeProduto
+          value: RTX 5050
+          description: ""
+          disabled: false
+        - name: valorProduto
+          value: "2999.99"
+          description: ""
+          disabled: false
+        - name: vinculoImagem
+          value: ""
+          description: ""
+          disabled: false
+          fileName: C:\Users\50786702893\Downloads\rtx5050.jpeg
+          type: file
+    headers:
+      - name: Content-Type
+        value: multipart/form-data
+      - name: User-Agent
+        value: insomnia/12.3.1
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8000/categorias
+    name: INSERT CATEGORIA
+    meta:
+      id: req_1a3f28fc8f3a4dc9a2127fd830679927
+      created: 1770812918926
+      modified: 1770894105317
+      isPrivate: false
+      description: ""
+      sortKey: -1770812918926
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"descricaoCategoria" : "Periféricos"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.3.1
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/produtos/1
+    name: DELETE PRODUTO
+    meta:
+      id: req_a465347a748f460aa7d8127ed4c0fb39
+      created: 1770817687137
+      modified: 1770817828543
+      isPrivate: false
+      description: ""
+      sortKey: -1770817687137
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.3.1
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8000/produtos/2
+    name: ALTER PRODUTO (id)
+    meta:
+      id: req_87b7a67fd7094b19bbb9d61eeb7e81c7
+      created: 1770893951063
+      modified: 1770894160110
+      isPrivate: false
+      description: ""
+      sortKey: -1770893951063
+    method: PUT
+    body:
+      mimeType: multipart/form-data
+      params:
+        - name: idCategoria
+          value: "2"
+          description: ""
+          disabled: false
+        - name: nomeProduto
+          value: Mouse Beast X
+          description: ""
+          disabled: false
+        - name: valorProduto
+          value: "1300"
+          description: ""
+          disabled: false
+        - name: vinculoImagem
+          value: ""
+          description: ""
+          disabled: false
+          fileName: C:\Users\50786702893\Pictures\Screenshots\WlMouse Beast X PRO.png
+          type: file
+    headers:
+      - name: Content-Type
+        value: multipart/form-data
+      - name: User-Agent
+        value: insomnia/12.3.1
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: localhost:8000/produtos/1
+    name: SELECT PRODUTO (id)
+    meta:
+      id: req_1d67f316e8324898928df3d8f674d0b9
+      created: 1770893973025
+      modified: 1770893977243
+      isPrivate: false
+      description: ""
+      sortKey: -1770596478119
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.3.1
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_ab812f7f9fd8ca2bb6223f71746b3fa47e5bc768
+    created: 1770812869053
+    modified: 1770812869053
+environments:
+  name: Base Environment
+  meta:
+    id: env_ab812f7f9fd8ca2bb6223f71746b3fa47e5bc768
+    created: 1770812869051
+    modified: 1770812869051
+    isPrivate: false
